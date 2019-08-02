@@ -10,11 +10,11 @@ const advertController = require('../../controllers/advert');
 router
     .get('/', advertController.getAdverts)
     .post('/', advertController.saveAdvert);
-
+    
 router
     .get('/:id', advertController.getAdvert)
     .put('/:id', advertController.updateAdvert)
-    .delete('/:id', advertController.deleteAdvert)
+    .delete('/:id', advertController.deleteAdvert);
 
 
 // Export router

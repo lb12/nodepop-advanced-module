@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Database connection
 require('./lib/connectMongoose');
-// require('./models/Advert');
 
 
 // Routes API
