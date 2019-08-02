@@ -4,10 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const utils = require('./utils/utils');
-
-// Routes variables
-const indexRouter = require('./routes/index');
 
 let app = express();
 
@@ -22,14 +18,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Routes API
-const apiPath = '/api-v';
-const apiVersion = '1';
-const apiUri = apiPath + apiVersion;
+// Database connection
+require('./lib/connectMongoose');
+// require('./models/Advert');
 
-// app.use(apiUri + '/loquesea', 'routeFile');
+
+// Routes API
+// Variables
+const advertRouter = require('./routes/api/advert');
+const apiPath = '/api-v1';
+
+app.use(apiPath + '/adverts', advertRouter);
+
 
 // Routes Web App
+// Variables
+const indexRouter = require('./routes/index');
+
 app.use('/', indexRouter);
 
 
@@ -39,30 +44,44 @@ app.use(function(req, res, next) {
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use(function(error, req, res, next) {
   // Check validation error
-  if ( err.array ) {
-    err.status = 422;
-    const errInfo = err.array({ onlyFirstError : true })[0];
-    err.message = utils.isAPI(req, apiPath) ?
-      { message : 'Not valid', error : err.mapped() } :
+  if ( error.array ) {
+    error.status = 422;
+    const errInfo = error.array({ onlyFirstError : true })[0];
+    error.message = isAPI(req) ?
+      { message : 'Not valid', error : error.mapped() } :
       `Not valid - ${errInfo.param} ${errInfo.msg}`;
   }
   
-  res.status(err.status || 500);
+  res.status(error.status || 500);
 
-  if ( utils.isAPI(req, apiPath) ) {
-    res.json({ success : false, error : err.message });
+  if ( isAPI(req) ) {
+    res.json({ success : false, error : error.message });
     return;
   }
 
   // Set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.message = error.message;
+  res.locals.error = req.app.get('env') === 'development' ? error : {};
 
   // Render the error page
   res.render('error');
 });
+
+
+
+// Aux functions...
+
+
+/**
+ * Aux function that checks if current request has been sent to the API
+ * @param req Request object
+ * @param apiPath API string on the URL (eg. /apiv)
+ */
+function isAPI( req ) {
+  return req.originalUrl.indexOf(apiPath) === 0;
+}
 
 
 module.exports = app;
