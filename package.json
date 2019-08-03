@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "cross-env DEBUG=nodeapi:* nodemon"
+    "dev": "cross-env DEBUG=nodeapi:* nodemon",
+    "install_db": "node ./lib/install_db"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
