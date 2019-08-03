@@ -33,7 +33,9 @@ app.use(apiPath + '/adverts', advertRouter);
 // Routes Web App
 // Variables
 const indexRouter = require('./routes/index');
+const advertsRouter = require('./routes/advert');
 
+app.use('/adverts', advertsRouter);
 app.use('/', indexRouter);
 
 

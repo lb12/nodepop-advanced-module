@@ -1,20 +1,18 @@
 'use strict';
 
-// Load Router with express module
+// Load router with express module
 const express = require('express');
 const router = express.Router();
 
-const advertController = require('../../controllers/advert');
+const advertFacade = require('../../controllers/api/facades/advertFacade');
 
 // Define full list of routes
 router
-    .get('/', advertController.getAdverts)
-    .post('/', advertController.saveAdvert);
+    .get('/', advertFacade.getAdverts)
+    .post('/', advertFacade.saveAdvert);
     
 router
-    .get('/:id', advertController.getAdvert)
-    .put('/:id', advertController.updateAdvert)
-    .delete('/:id', advertController.deleteAdvert);
+    .get('/:id', advertFacade.getAdvert)
 
 
 // Export router

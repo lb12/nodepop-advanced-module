@@ -36,24 +36,6 @@ advertSchema.statics.getOneById = function(_id) {
     return query.exec();
 };
 
-/**
- * Update an advert by his id
- */
-advertSchema.statics.updateById = function(_id, data) {
-    const query = Advert.findByIdAndUpdate(_id, data, { new: true });
-    return query.exec();
-}
-
-/**
- * Delete an advert by his id
- */
-advertSchema.statics.deleteById = function(_id) {
-    const query = Advert.findByIdAndDelete(_id);
-    return query.exec();
-}
-
-
-
 
 // Create the Advert Model
 const Advert = mongoose.model('Advert', advertSchema);
