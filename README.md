@@ -45,9 +45,9 @@ Now you can access `http://localhost:3000` to see the home page of the website a
 
 ## API description
 
-API documentation is made using *JSDoc* comments to generate API definitions with **Swagger**
+API documentation is made using **Swagger**, code functions are documented using JSDoc style.
 
-You can visit the full API documentation visiting on `http://localhost:3000/docs/api`
+You can visit the API documentation (and **try it**) visiting on `http://localhost:3000/api-v1/docs`
 
 ### Adverts filters
 
@@ -64,11 +64,23 @@ You can visit the full API documentation visiting on `http://localhost:3000/docs
 You can see different adverts with pages filters. 
 * by **page** (*page*): indicates which page of adverts you want tosee.
 * by **limit** (*limit*): indicates how many adverts are shown.   
-* by **sort**  (*sort*): indicates which is the advert field tosort the results (e.g. 'price').
-
+* by **sort**  (*sort*): indicates which is the advert field to sort the results (e.g. 'price').
 
 An example of a query with filters could be next one: 
 ```
 GET
 http://localhost:3000/api-v1/adverts?tag=mobile&for_sale=false&name=ip&price=50-&page=0&limit=3&sort=price
 ```
+
+## What can you do right now
+This project let you:
+
+* Create an advert (`POST /api-v1/adverts`)
+* See all the adverts in database using the API (`GET /api-v1/adverts`) or browser (`/adverts`)
+* See all the existing tags using the API (`GET /api-v1/tags/distinct`)
+
+When you see the adverts, like it was said before, you can filter as you want (adverts filters and pagination filters)
+
+
+### Code checking
+ESLint was added like dependency to check errors or warnings in the code. You can run it using `npm run lint`

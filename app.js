@@ -3,7 +3,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerConfig = YAML.load('./swagger.yaml');
 
 let app = express();
 
@@ -40,6 +42,8 @@ const advertsRouter = require('./routes/advert');
 app.use('/adverts', advertsRouter);
 app.use('/', indexRouter);
 
+// Swagger init
+app.use('/api-v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,138 @@
+swagger: "2.0"
+info:
+    author: "David Escribano Rodríguez"
+    version: "1.0.0"
+    title: "Nodepop API Swagger Doc"
+    description: "Minimal documentation of the Nodepop API. You can find more information about the project on the [GitHub project URL](http://github.com/lb12/nodepop)."
+    contact:
+        email: "david.escribanor@gmail.com"
+    license: 
+        name: "MIT"
+        url: "https://opensource.org/licenses/MIT"
+host: "localhost:3000"
+basePath: "/api-v1"
+tags:
+    -   name: "Adverts"
+        description: "Operations about the adverts"
+    -   name: "Tags"
+        description: "Operations about the tags"
+schemes:
+    -   "http"
+consumes: 
+    -   "application/json"
+produces: 
+    -   "application/json"
+paths:
+    /adverts:
+        get:
+            tags:
+                -   "Adverts"
+            summary: "Returns adverts list in system with pagination and filtering chance"
+            parameters:
+                -   name: "name"
+                    in: "query"
+                    description: "Adverts starting name"
+                    required: false
+                    type: "string"
+                -   name: "for_sale"
+                    in: "query"
+                    description: "For sale or wanted adverts"
+                    required: false
+                    type: "boolean"
+                -   name: "price"
+                    in: "query"
+                    description: "Price filter (min, max) e.g. : '50-100' or '50-' or '-50' or '50'"
+                    required: false
+                    type: "string"
+                -   name: "tag"
+                    in: "query"
+                    description: "Adverts tags e.g: (motor, lifestyle, mobile, work)"
+                    required: false
+                    type: "string"
+                -   name: "page"
+                    in: "query"
+                    description: "Number of the page of the adverts"
+                    required: false
+                    type: "integer"
+                    format: "int32"
+                -   name: "limit"
+                    in: "query"
+                    description: "Number of adverts returned"
+                    required: false
+                    type: "integer"
+                    format: "int32"
+                -   name: "sort"
+                    in: "query"
+                    description: "Advert fields to sort by. You can use white blanks to sort by more than one."
+                    required: false
+                    type: "string"
+            responses: 
+                200:
+                    description: "successfull operation"
+                    schema:
+                        $ref: "#/definitions/Adverts"
+        post:
+            tags:
+                -   "Adverts"
+            summary: "Create a new advert in system"
+            parameters:
+                -   in: "body"
+                    name: "body"
+                    description: "Advert that we want to create"
+                    schema:
+                        $ref: "#/definitions/Advert"
+            responses: 
+                200:
+                    description: "Successfull operation"
+                    schema:
+                        $ref: "#/definitions/Advert"
+                422:
+                    description: "Wrong parameter added"
+                500:
+                    description: "Internal server error"
+    /tags/distinct:
+        get:
+            tags:
+                -   "Tags"
+            summary: "Returns all the distinct tags in system of the adverts"
+            responses: 
+                200:
+                    description: "successfull operation"
+                    schema:
+                        $ref: "#/definitions/Tags"
+                500:
+                    description: "Internal server error"
+definitions:
+    Advert:
+        type: "object"
+        properties:
+            name:
+                type: "string"
+            for_sale:
+                type: "boolean"
+            price:
+                type: "number"
+            photo:
+                type: "string"
+            tags:
+                type: "array"
+                items:
+                    type: "string"
+    Adverts:
+        type: "object"
+        properties:
+            adverts:
+                type: "object"
+                additionalProperties:
+                    $ref: "#/definitions/Advert"
+    Tags:
+        type: "object"
+        properties:
+            tags:
+                type: "array"
+                items:
+                    type: "string"
+    
+            
+        
+    
