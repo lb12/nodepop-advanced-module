@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const multipart = require('connect-multiparty');
-const multipartMiddleware = multipart({ uploadDir: 'public/images' });
+const multipartMiddleware = multipart({ uploadDir: 'public/images/adverts' });
 
 const advertFacade = require('../../controllers/api/facades/advertFacade');
 

@@ -8,7 +8,6 @@ const advertController = require('../../api/advert');
  */
 async function renderAdvertsPage(req, res, next) {
     const adverts = await advertController.getAdverts(req, next);
-    console.log(adverts);
     res.render('show-adverts', { adverts, title: 'Adverts' });
 }
 
