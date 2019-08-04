@@ -1,5 +1,7 @@
 'use strict';
 
+const { validationResult } = require('express-validator');
+
 const Advert = require('../../models/Advert');
 
 /**
@@ -9,7 +11,8 @@ const Advert = require('../../models/Advert');
  */
 async function getAdverts (req, next) {
     try {
-
+        validationResult(req).throw();
+        
         // Filters by
         const name = req.query.name;
         const forSale = req.query.for_sale;
@@ -66,6 +69,8 @@ async function getAdverts (req, next) {
  */
 async function saveAdvert (req, next) {
     try {
+        validationResult(req).throw();
+
         let data = req.body;
         const file = req.files;
 
@@ -76,6 +81,7 @@ async function saveAdvert (req, next) {
         return await advert.save()
     } catch (error) {
         next(error);
+        return;
     }
 }
 

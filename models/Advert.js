@@ -29,14 +29,6 @@ advertSchema.statics.listAll = function({ filter, skip, limit, fields, sort }) {
 };
 
 /**
- * Find an advert by id
- */
-advertSchema.statics.getOneById = function(_id) {
-    const query = Advert.findById(_id);
-    return query.exec();
-};
-
-/**
  * Lists distinct advert tags
  * 
  */
