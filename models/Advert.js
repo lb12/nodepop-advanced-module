@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 
 // Define the Advert schema
 const advertSchema = mongoose.Schema({
-    name: String,
+    name: { type: String, index: true },
     for_sale: Boolean,
-    price: Number,
+    price: { type: Number, index: true },
     photo: String,
-    tags: [String]
+    tags: { type: [String], index: true }
 });
 
 
