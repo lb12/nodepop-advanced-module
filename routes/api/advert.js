@@ -9,7 +9,7 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({ uploadDir: 'public/images/adverts' });
 
 // Load express-validator module
-const { query, body, param, validationResult, check } = require('express-validator');
+const { query, body } = require('express-validator');
 
 // Code files imports
 const advertFacade = require('../../controllers/api/facades/advertFacade');

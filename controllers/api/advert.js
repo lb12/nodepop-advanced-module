@@ -22,7 +22,7 @@ async function getAdverts (req, next) {
         // Other filters
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
-        const skip = (page != NaN || page !== 1) ? (limit * page - limit) : 0;
+        const skip = (!isNaN(page) || page !== 1) ? (limit * page - limit) : 0;
         const fields = req.query.fields;
         const sort = req.query.sort;
 
