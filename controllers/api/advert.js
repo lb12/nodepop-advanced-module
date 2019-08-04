@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs');
+
 const Advert = require('../../models/Advert');
 
 /**
@@ -30,11 +32,14 @@ async function getAdverts (req, next) {
  */
 async function saveAdvert (req, next) {
     try {
-        const data = req.body;
+        let data = req.body;
+        const file = req.files;
+
+        data.photo = getPhotoFileName(file); 
             
         const advert = new Advert(data);
 
-        return await advert.save();
+        return await advert.save()
     } catch (error) {
         next(error);
     }
@@ -53,6 +58,17 @@ async function getAdvert (req, next) {
     } catch (error) {
         next(error);
     }
+}
+
+
+
+// Aux methods
+
+function getPhotoFileName(file) {
+    const filePath = file.photo.path;
+    const fileName = filePath.split('/')[2];
+
+    return fileName;
 }
 
 

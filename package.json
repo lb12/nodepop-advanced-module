@@ -8,6 +8,7 @@
     "install_db": "node ./lib/install_db"
   },
   "dependencies": {
+    "connect-multiparty": "^2.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
