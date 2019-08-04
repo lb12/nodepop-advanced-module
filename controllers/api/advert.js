@@ -85,23 +85,6 @@ async function saveAdvert (req, next) {
     }
 }
 
-
-/**
- * GET an advert from the DB 
- * @param req receives in req.params.id the id of the advert requested
- */
-async function getAdvert (req, next) {
-    try {
-        const _id = req.params.id;
-
-        return await Advert.getOneById(_id);
-    } catch (error) {
-        next(error);
-    }
-}
-
-
-
 // Aux methods
 
 /**
@@ -118,6 +101,5 @@ function getPhotoFileName(file) {
 
 module.exports = {
     getAdverts,
-    getAdvert,
     saveAdvert
 };
