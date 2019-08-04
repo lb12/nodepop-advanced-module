@@ -47,5 +47,12 @@
             "price": 3999,
             "photo": "ford_focus.jpg",
             "tags": [ "motor", "lifestyle" ]
+        },
+        {
+            "name": "Fishing Rod",
+            "for_sale": true,
+            "price": 79.99,
+            "photo": "fishing_rod.png",
+            "tags": [ "work", "lifestyle" ]
         }
     ]

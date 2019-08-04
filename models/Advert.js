@@ -36,6 +36,15 @@ advertSchema.statics.getOneById = function(_id) {
     return query.exec();
 };
 
+/**
+ * Lists distinct advert tags
+ * 
+ */
+advertSchema.statics.getDistinctTags = function() {
+    const query = Advert.distinct('tags');
+    query.sort();
+    return query.exec();
+};
 
 // Create the Advert Model
 const Advert = mongoose.model('Advert', advertSchema);

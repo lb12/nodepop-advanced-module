@@ -25,9 +25,11 @@ require('./lib/connectMongoose');
 // Routes API
 // Variables
 const advertRouter = require('./routes/api/advert');
+const tagRouter = require('./routes/api/tag');
 const apiPath = '/api-v1';
 
 app.use(apiPath + '/adverts', advertRouter);
+app.use(apiPath + '/tags', tagRouter);
 
 
 // Routes Web App
