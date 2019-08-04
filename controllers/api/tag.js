@@ -3,12 +3,11 @@
 const Advert = require('../../models/Advert');
 
 /**
- * POST an advert to the DB 
- * @param req receives in req.body all the fields of the advert.
+ * GET all the distinct tags in the database
  */
-async function getDistinctTags (req, next) {
+async function getDistinctTags (next) {
     try {
-        return await Advert.getDistinctTags(req, next);
+        return await Advert.getDistinctTags();
     } catch (error) {
         next(error);
     }
