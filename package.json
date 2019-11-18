@@ -9,6 +9,7 @@
     "lint": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "connect-multiparty": "^2.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

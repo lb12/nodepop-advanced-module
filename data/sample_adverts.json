@@ -1,58 +1,58 @@
 [
-        {
-            "name": "iPhone",
-            "for_sale": true,
-            "price": 230.15,
-            "photo": "iphone.png",
-            "tags": [ "mobile", "lifestyle" ]
-        },
-        {
-            "name": "Bicicleta",
-            "for_sale": false,
-            "price": 50.00,
-            "photo": "bike.jpeg",
-            "tags": [ "lifestyle", "motor" ]
-        },
-        {
-            "name": "Xiaomi M365",
-            "for_sale": true,
-            "price": 300,
-            "photo": "xiaomi_scooter.jpeg",
-            "tags": [ "motor", "lifestyle" ]
-        },
-        {
-            "name": "Kayak",
-            "for_sale": false,
-            "price": 289,
-            "photo": "kayak.jpg",
-            "tags": [ "lifestyle" ]
-        },
-        {
-            "name": "Macbook Pro 2010",
-            "for_sale": true,
-            "price": 215,
-            "photo": "macbook_pro.jpg",
-            "tags": [ "work" ]
-        },
-        {
-            "name": "Samsung Galaxy s10",
-            "for_sale": false,
-            "price": 369,
-            "photo": "samsunggalaxys10.jpg",
-            "tags": [ "mobile" ]
-        },
-        {
-            "name": "Ford Focus 2008",
-            "for_sale": true,
-            "price": 3999,
-            "photo": "ford_focus.jpg",
-            "tags": [ "motor", "lifestyle" ]
-        },
-        {
-            "name": "Fishing Rod",
-            "for_sale": true,
-            "price": 79.99,
-            "photo": "fishing_rod.png",
-            "tags": [ "work", "lifestyle" ]
-        }
-    ]
+    {
+        "name": "iPhone",
+        "for_sale": true,
+        "price": 230.15,
+        "photo": "iphone.png",
+        "tags": [ "mobile", "lifestyle" ]
+    },
+    {
+        "name": "Bicicleta",
+        "for_sale": false,
+        "price": 50.00,
+        "photo": "bike.jpeg",
+        "tags": [ "lifestyle", "motor" ]
+    },
+    {
+        "name": "Xiaomi M365",
+        "for_sale": true,
+        "price": 300,
+        "photo": "xiaomi_scooter.jpeg",
+        "tags": [ "motor", "lifestyle" ]
+    },
+    {
+        "name": "Kayak",
+        "for_sale": false,
+        "price": 289,
+        "photo": "kayak.jpg",
+        "tags": [ "lifestyle" ]
+    },
+    {
+        "name": "Macbook Pro 2010",
+        "for_sale": true,
+        "price": 215,
+        "photo": "macbook_pro.jpg",
+        "tags": [ "work" ]
+    },
+    {
+        "name": "Samsung Galaxy s10",
+        "for_sale": false,
+        "price": 369,
+        "photo": "samsunggalaxys10.jpg",
+        "tags": [ "mobile" ]
+    },
+    {
+        "name": "Ford Focus 2008",
+        "for_sale": true,
+        "price": 3999,
+        "photo": "ford_focus.jpg",
+        "tags": [ "motor", "lifestyle" ]
+    },
+    {
+        "name": "Fishing Rod",
+        "for_sale": true,
+        "price": 79.99,
+        "photo": "fishing_rod.png",
+        "tags": [ "work", "lifestyle" ]
+    }
+]

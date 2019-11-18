@@ -25,13 +25,18 @@ require('./lib/connectMongoose');
 
 
 // Routes API
+
+const jwtAuth = require('./lib/jwtAuth');
+
 // Variables
 const advertRouter = require('./routes/api/advert');
+const authRouter = require('./routes/api/authentication');
 const tagRouter = require('./routes/api/tag');
 const apiPath = '/api-v1';
 
-app.use(apiPath + '/adverts', advertRouter);
-app.use(apiPath + '/tags', tagRouter);
+app.use(`${apiPath}/authenticate`, authRouter);
+app.use(`${apiPath}/adverts`, jwtAuth(), advertRouter);
+app.use(`${apiPath}/tags`, jwtAuth(), tagRouter);
 
 
 // Routes Web App
