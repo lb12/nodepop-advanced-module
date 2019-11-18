@@ -6,7 +6,7 @@
 First of all, clone the repo and install dependencies with npm
 
 ```
-$ git clone https://github.com/lb12/nodepop
+$ git clone https://github.com/lb12/nodepop-advanced-module
 $ cd nodepop
 $ npm install
 ```
