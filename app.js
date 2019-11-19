@@ -19,6 +19,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * Setup de i18n
+ */
+const i18n = require('./lib/i18nConfigure')();
+app.use(i18n.init);
 
 // Database connection
 require('./lib/connectMongoose');
@@ -26,13 +31,13 @@ require('./lib/connectMongoose');
 
 // Routes API
 
-const jwtAuth = require('./lib/jwtAuth');
-
 // Variables
+const jwtAuth = require('./lib/jwtAuth');
+const apiPath = '/api-v1';
+
 const advertRouter = require('./routes/api/advert');
 const authRouter = require('./routes/api/authentication');
 const tagRouter = require('./routes/api/tag');
-const apiPath = '/api-v1';
 
 app.use(`${apiPath}/authenticate`, authRouter);
 app.use(`${apiPath}/adverts`, jwtAuth(), advertRouter);
@@ -43,7 +48,9 @@ app.use(`${apiPath}/tags`, jwtAuth(), tagRouter);
 // Variables
 const indexRouter = require('./routes/index');
 const advertsRouter = require('./routes/advert');
+const localeRouter = require('./routes/locale');
 
+app.use('/change-locale', localeRouter);
 app.use('/adverts', advertsRouter);
 app.use('/', indexRouter);
 

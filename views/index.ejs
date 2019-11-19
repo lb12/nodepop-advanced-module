@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %>, a project to try a simple API for a Wallapop like backend app</p>
-    <p>If you want to see some adverts click <a href="adverts">here...</a></p>
-  </body>
-</html>
+<% include header.ejs %> 
+
+<% include navbar.ejs %>
+<p>
+  <%= __('Welcome to %s, a project to try a simple API for a Wallapop like backend app', title) %>
+</p>
+<p>
+  <%= __('If you want to see some adverts click') %>
+  <a href="adverts"><%= __('here') %>...</a>
+</p>
+
+<% include footer.ejs %>
