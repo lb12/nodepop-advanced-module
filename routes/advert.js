@@ -1,8 +1,8 @@
 'use strict';
 
 // Load router with express module
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const advertFacade = require('../controllers/front/facades/advertFacade');
 
