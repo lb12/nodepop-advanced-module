@@ -11,6 +11,13 @@ $ cd nodepop
 $ npm install
 ```
 
+### Enviroment variables config
+You have to create a .env file ( use the `.env.example` as a guide) where all the necessary variables are setted. You have to fill only three variables: 
+
+* **MONGODB_URL**: URL for MongoDB connection
+* **RABBITMQ_URL**: URL for RabbitMQ connection
+* **JWT_SECRET**: Secret password to generate JSON Web Token.
+
 ### Database configuration
 By default, the app asumes that you have a MongoDB instance on localhost in the default port.
 
@@ -90,6 +97,13 @@ An example of a query with filters could be next one:
 GET
 http://localhost:3000/api-v1/adverts?tag=mobile&for_sale=false&name=ip&price=50-&page=0&limit=3&sort=price
 ```
+
+### Creating a new advert
+When you create a new advert, you have to upload a photo too. When server finishes storing that new advert into DB, in background, the API publish a message into the RabbitMQ queue to create a thumbnail of that photo.
+
+You can see that thumbnail in `public/images/adverts/thumbnail/` dir and the original one in `public/images/adverts/`
+
+A microservice 'worker' was created to do this job. This worker can be run with the `npm run thumbnail-worker` command that you can see in `package.json`.
 
 ## What can you do right now
 This project let you:
