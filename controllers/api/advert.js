@@ -4,6 +4,8 @@ const { validationResult } = require('express-validator');
 
 const Advert = require('../../models/Advert');
 
+const createThumbnail = require('../../microservices/thumbnailer/publisher');
+
 /**
  * GET adverts from the DB 
  * @param req can receive a list of filters and process them to obtain a list of adverts
@@ -74,11 +76,21 @@ async function saveAdvert (req, next) {
         let data = req.body;
         const file = req.files;
 
-        data.photo = getPhotoFileName(file); 
+        const photoObj = getPhotoFileObj(file); 
+        data.photo = photoObj.fullname;
             
         const advert = new Advert(data);
+        const advertSaved = await advert.save();
+        
+        // Send message to the RabbitMQ to create a new thumbnail
+        const thumbnailMessage = {
+            info: `${photoObj.fullname} at ${Date.now()}`,
+            image: photoObj,
+            quality: 75
+        }
+        createThumbnail(thumbnailMessage).catch(err => console.log(err));
 
-        return await advert.save()
+        return advertSaved;
     } catch (error) {
         next(error);
         return;
@@ -91,11 +103,24 @@ async function saveAdvert (req, next) {
  * Get the filename of the advert photo
  * @param file Object with the advert info fields
  */
-function getPhotoFileName(file) {
+function getPhotoFileObj(file) {
     const filePath = file.photo.path;
-    const fileName = filePath.split('/')[3];
+    const splittedPath = filePath.split('/');
 
-    return fileName;
+    const fileName = splittedPath.pop(3);
+    const imagePath = splittedPath.join('/');
+
+    const splittedFileName = fileName.split('\.');
+    const fileExtension = splittedFileName[ splittedFileName.length - 1 ];
+    
+    const fileObj = { 
+        fullname: fileName,
+        name: splittedFileName[0], 
+        extension: fileExtension, 
+        path: imagePath
+    };
+
+    return fileObj;
 }
 
 
