@@ -21,7 +21,7 @@ If you need more info on MongoDB you can visit the official doc:
 * [Install MongoDB](https://docs.mongodb.com/manual/installation/)
 
 ## Loading initial sample data into DB
-You can use `npm run install_db` to clean all the adverts in database and populate it with sample data (7 sample adverts), from `data/sample_adverts.json` file.
+You can use `npm run install_db` to clean all the adverts and users in database and populate it with sample data (8 sample adverts, 1 sample user), from `data/sample_adverts.json` and `sample_users.json` files.
 
 `sample_adverts.json` contains an array of adverts with the Advert model fields:
 
@@ -31,7 +31,14 @@ You can use `npm run install_db` to clean all the adverts in database and popula
 * **photo**: string. Name of the image advert file. Located in `public/images/`
 * **tags**: array of string. Only '*work*', '*mobile*', '*motor*' and '*lifestyle*' are valid tags.
 
-## Running server for develop
+
+`sample_users.json` contains an array of users with the User model fields:
+
+* **email**: string. User email.
+* **password**: string. plain password that is hashed before insert into the DB.
+
+
+## Running server for development
 Once the project is configured you should run express with *nodemon* t start server and do any request you want. *Nodemon* reloads server with changes, so you don't need to reload it manually.
 
 ```
@@ -43,8 +50,20 @@ Previous command runs express through nodemon on `port 3000`.
 
 Now you can access `http://localhost:3000` to see the home page of the website and see there some adverts paginated.
 
+## Website translation
+The website is translated using the `i18n` dependency. Spanish (`es`) and english (`en`) are the languages that you can use now to see the web.
+
+A cookie is setted up to *save* the chosen language, but by default, the language is setted with your browser settings.
+
 ## API description
 
+### JWT authentication
+
+API is authenticated with **JWT**. With the sample user credentials, you can do login and get a token that must to use to see the adverts via API or get the tags.
+
+A request <u>without token</u> or with a <u>expired token</u> will be answered with a HTTP 401 and with an error message.
+
+### API documentation
 API documentation is made using **Swagger**, code functions are documented using JSDoc style.
 
 You can visit the API documentation (and **try it**) visiting on `http://localhost:3000/api-v1/docs`
@@ -75,9 +94,11 @@ http://localhost:3000/api-v1/adverts?tag=mobile&for_sale=false&name=ip&price=50-
 ## What can you do right now
 This project let you:
 
-* Create an advert (`POST /api-v1/adverts`)
-* See all the adverts in database using the API (`GET /api-v1/adverts`) or browser (`/adverts`)
-* See all the existing tags using the API (`GET /api-v1/tags/distinct`)
+* Authenticate (`POST /api-v1/authenticate`) that returns a JWT token
+* Using that token you can interact with the API:
+  * Create an advert (`POST /api-v1/adverts`)
+  * See all the adverts in database using the API (`GET /api-v1/adverts`) or browser (`/adverts`)
+  * See all the existing tags using the API (`GET /api-v1/tags/distinct`)
 
 When you see the adverts, like it was said before, you can filter as you want (adverts filters and pagination filters)
 

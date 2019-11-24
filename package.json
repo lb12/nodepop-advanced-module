@@ -1,12 +1,13 @@
 {
   "name": "nodepop",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
     "install_db": "node ./lib/install_db",
-    "lint": "eslint --ignore-path .gitignore ."
+    "lint": "eslint --ignore-path .gitignore .",
+    "thumbnail-worker": "node ./microservices/thumbnailer/worker"
   },
   "dependencies": {
     "amqplib": "^0.5.5",
