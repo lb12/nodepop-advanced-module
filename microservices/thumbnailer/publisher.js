@@ -18,7 +18,7 @@ async function createConnection() {
     });
 
     connected = true;
-};
+}
 
 const createThumbnail = async message => {    
     await createConnection().catch( error => console.log('Error while connecting to RabbitMQ', error));

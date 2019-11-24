@@ -29,7 +29,7 @@ async function createConnection() {
         console.log('ERROR while connecting to RabbitMQ', error);
         connected = false;
     }
-};
+}
 
 consumeTask().catch( error => console.log('ERROR while consuming messages in RabbitMQ worker channel', error));
 async function consumeTask() {

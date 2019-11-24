@@ -110,7 +110,7 @@ function getPhotoFileObj(file) {
     const fileName = splittedPath.pop(3);
     const imagePath = splittedPath.join('/');
 
-    const splittedFileName = fileName.split('\.');
+    const splittedFileName = fileName.split('.');
     const fileExtension = splittedFileName[ splittedFileName.length - 1 ];
     
     const fileObj = { 
